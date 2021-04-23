@@ -1,0 +1,27 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Task {
+  id         Int       @id @default(autoincrement())
+  name       String
+  completed  Boolean   @default(false)
+  dueDate    DateTime?
+  list       List?     @relation(fields: [listId], references: [id])
+  listId     Int?      @unique
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+
+model List {
+  id         Int      @id @default(autoincrement())
+  name       String
+  tasks      Task[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
