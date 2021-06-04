@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "ts-node ./src/index.ts",
-    "prisma:migrate": "",
+    "prisma:migrate": "prisma migrate reset",
     "prisma:studio": "prisma studio"
   },
   "dependencies": {
